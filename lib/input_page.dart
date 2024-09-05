@@ -5,6 +5,7 @@ import 'reusable_card.dart';
 import 'icon_content.dart';
 import 'constants.dart';
 import 'results_page.dart';
+import 'button.dart';
 
 enum GenderType {
   male,
@@ -154,13 +155,12 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundIconButton(
-                              icon: FontAwesomeIcons.minus,
-                              onPressed: (){
-                                setState(() {
-                                  weight --;
-                                });
-                              }
-                            ),
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                }),
                             SizedBox(
                               width: 10.0,
                             ),
@@ -168,7 +168,7 @@ class _InputPageState extends State<InputPage> {
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  weight ++;
+                                  weight++;
                                 });
                               },
                             ),
@@ -197,12 +197,11 @@ class _InputPageState extends State<InputPage> {
                           children: [
                             RoundIconButton(
                                 icon: FontAwesomeIcons.minus,
-                                onPressed: (){
+                                onPressed: () {
                                   setState(() {
-                                    age --;
+                                    age--;
                                   });
-                                }
-                            ),
+                                }),
                             SizedBox(
                               width: 10.0,
                             ),
@@ -210,7 +209,7 @@ class _InputPageState extends State<InputPage> {
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  age ++;
+                                  age++;
                                 });
                               },
                             ),
@@ -223,25 +222,12 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
+          BottomButton(
+            buttonTitle: "Calculate",
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ResultsPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ResultsPage()));
             },
-            child: Container(
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              child: Center(
-                child: Text(
-                  "CALCULATE",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-              ),
-            ),
           ),
         ],
       ),
@@ -249,24 +235,4 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({required this.icon, required this.onPressed});
 
-  final IconData icon;
-  final Function() onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      elevation: 6.0,
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      onPressed: onPressed,
-    );
-  }
-}

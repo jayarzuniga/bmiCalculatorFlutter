@@ -5,6 +5,14 @@ import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/components/button.dart';
 
 class ResultsPage extends StatelessWidget {
+
+  ResultsPage ({required this.bmiResult, required this.resultText, required this.interpretation});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +25,8 @@ class ResultsPage extends StatelessWidget {
         children: [
           Expanded(
               child: Container(
+                padding: EdgeInsets.all(15.0),
+                alignment: Alignment.bottomLeft,
                 child: Text("Your Result",
                   style: kTitleTextStyle,
                 ),
@@ -30,13 +40,13 @@ class ResultsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Overweight",
+                    Text(resultText.toUpperCase(),
                       style: kResultTextStyle,
                     ),
-                    Text('35.5',
+                    Text(bmiResult,
                       style: kBMITextStyle,
                     ),
-                    Text("Your BMI result is quite large. You should take your proper diet",
+                    Text(interpretation,
                       textAlign: TextAlign.center,
                       style: kBodyTextStyle,
                     )
@@ -45,8 +55,7 @@ class ResultsPage extends StatelessWidget {
             ),
           ),
           BottomButton(onTap: () {
-            Navigator.pop(context,
-              MaterialPageRoute(builder: (context) => InputPage()));
+            Navigator.pop(context);
           },
               buttonTitle: "Re-Calculate")
         ],
